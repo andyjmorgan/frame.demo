@@ -1,0 +1,12 @@
+.DS_STORE
+/dist/
+*.log
+*.csproj.user
+/node_modules/
+.angular/
+**/bin/*
+**/obj/*
+.vs
+.idea
+bin
+obj

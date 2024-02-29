@@ -1,0 +1,6 @@
+@Frame.Demo.Stack.Server_HostAddress = http://localhost:5004
+
+GET {{Frame.Demo.Stack.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
