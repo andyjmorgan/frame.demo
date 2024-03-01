@@ -1,6 +1,8 @@
 # About
 This started off as a joke between Ruben Spruijt and Andrew Morgan about how viable using a virtual desktop could be to developer use cases. Not happy with certain statements I decided to take the challenge and write a demo, modern architecture application in a virtual desktop end to end.
 
+It pains me to admit, that Ruben was right.
+
 ## Architecture of this sample application.
 ![Architecture](./media/Frame.Demo.Stack.Architecture.drawio.svg)
 
