@@ -32,7 +32,7 @@ services:
   spa:
     build:
       context: .
-      dockerfile: frame.demo.stack.client/Dockerfile
+      dockerfile: src/frame.demo.stack.client/Dockerfile
     container_name: spa
     ports:
       - "8081:8081"
@@ -45,7 +45,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: frame.demo.Stack.Server/Dockerfile
+      dockerfile: src/frame.demo.Stack.Server/Dockerfile
     container_name: api
     ports:
       - "8082:8082"
@@ -60,6 +60,9 @@ services:
       - rabbitmq
     links: 
       - rabbitmq
+    deploy:
+      restart_policy:
+        condition: on-failure
   
   postgres:
     image: postgres:latest
@@ -88,16 +91,19 @@ services:
   consumer:
     build:
       context: .
-      dockerfile: frame.demo.Stack.Consumer/Dockerfile
+      dockerfile: src/frame.demo.Stack.Consumer/Dockerfile
     depends_on:
       - rabbitmq
     links: 
       - rabbitmq
+    deploy:
+      restart_policy:
+        condition: on-failure
   
   probe:
     build:
       context: .
-      dockerfile: frame.demo.Stack.TemperatureProbe/Dockerfile
+      dockerfile: src/frame.demo.Stack.TemperatureProbe/Dockerfile
     container_name: probe
     depends_on:
       - rabbitmq

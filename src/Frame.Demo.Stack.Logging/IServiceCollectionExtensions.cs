@@ -20,7 +20,7 @@ namespace Frame.Demo.Stack.Logging
                 .Enrich.WithProperty("ApplicationName", hostApplicationBuilder.Environment.ApplicationName)
                 .Enrich.WithExceptionDetails()
                 .WriteTo.Console()
-                .WriteTo.Seq(hostApplicationBuilder.Configuration.GetValue<string>("SeqAddress"));
+                .WriteTo.Seq(hostApplicationBuilder.Configuration.GetValue<string>("SeqAddress", "")!);
             });
         }
     }

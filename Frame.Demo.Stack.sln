@@ -3,24 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Server", "Frame.Demo.Stack.Server\Frame.Demo.Stack.Server.csproj", "{02CB372E-89D8-4BE3-B585-CAC933F60BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Server", "src\Frame.Demo.Stack.Server\Frame.Demo.Stack.Server.csproj", "{02CB372E-89D8-4BE3-B585-CAC933F60BAC}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "frame.demo.stack.client", "frame.demo.stack.client\frame.demo.stack.client.esproj", "{A6065AF4-F057-43DA-9B21-B19665E7C442}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "frame.demo.stack.client", "src\frame.demo.stack.client\frame.demo.stack.client.esproj", "{A6065AF4-F057-43DA-9B21-B19665E7C442}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE1DE305-F6FE-428E-BD95-209B997D3997}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Logging", "Frame.Demo.Stack.Logging\Frame.Demo.Stack.Logging.csproj", "{5C3C9821-AF40-4AA3-952F-90FF9628433E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Logging", "src\Frame.Demo.Stack.Logging\Frame.Demo.Stack.Logging.csproj", "{5C3C9821-AF40-4AA3-952F-90FF9628433E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Consumer", "Frame.Demo.Stack.Consumer\Frame.Demo.Stack.Consumer.csproj", "{30AF37B1-63DF-4798-9547-AA35DE38C4B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Consumer", "src\Frame.Demo.Stack.Consumer\Frame.Demo.Stack.Consumer.csproj", "{30AF37B1-63DF-4798-9547-AA35DE38C4B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Messaging", "Frame.Demo.Stack.Messaging\Frame.Demo.Stack.Messaging.csproj", "{92CAAA43-FC6E-41DD-A60C-1088D24CFB23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.Messaging", "src\Frame.Demo.Stack.Messaging\Frame.Demo.Stack.Messaging.csproj", "{92CAAA43-FC6E-41DD-A60C-1088D24CFB23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.TemperatureProbe", "Frame.Demo.Stack.TemperatureProbe\Frame.Demo.Stack.TemperatureProbe.csproj", "{FD2EC72A-1CDC-4B9C-B622-2650E83C2E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.TemperatureProbe", "src\Frame.Demo.Stack.TemperatureProbe\Frame.Demo.Stack.TemperatureProbe.csproj", "{FD2EC72A-1CDC-4B9C-B622-2650E83C2E66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.DBContext", "Frame.Demo.Stack.DBContext\Frame.Demo.Stack.DBContext.csproj", "{5F2E7E72-992E-475C-B133-7AE1FD65E8AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frame.Demo.Stack.DBContext", "src\Frame.Demo.Stack.DBContext\Frame.Demo.Stack.DBContext.csproj", "{5F2E7E72-992E-475C-B133-7AE1FD65E8AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{D6CCAA02-D519-4D1A-81C9-690B442AFF55}"
 EndProject

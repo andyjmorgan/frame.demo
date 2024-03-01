@@ -7,10 +7,13 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Frame.Demo.Stack.Consumer/Frame.Demo.Stack.Consumer.csproj", "Frame.Demo.Stack.Consumer/"]
-RUN dotnet restore "./Frame.Demo.Stack.Consumer/Frame.Demo.Stack.Consumer.csproj"
+COPY ["src/Frame.Demo.Stack.Consumer/Frame.Demo.Stack.Consumer.csproj", "src/Frame.Demo.Stack.Consumer/"]
+COPY ["src/Frame.Demo.Stack.DBContext/Frame.Demo.Stack.DBContext.csproj", "src/Frame.Demo.Stack.DBContext/"]
+COPY ["src/Frame.Demo.Stack.Logging/Frame.Demo.Stack.Logging.csproj", "src/Frame.Demo.Stack.Logging/"]
+COPY ["src/Frame.Demo.Stack.Messaging/Frame.Demo.Stack.Messaging.csproj", "src/Frame.Demo.Stack.Messaging/"]
+RUN dotnet restore "./src/Frame.Demo.Stack.Consumer/Frame.Demo.Stack.Consumer.csproj"
 COPY . .
-WORKDIR "/src/Frame.Demo.Stack.Consumer"
+WORKDIR "/src/src/Frame.Demo.Stack.Consumer"
 RUN dotnet build "./Frame.Demo.Stack.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

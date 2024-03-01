@@ -3,15 +3,17 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8082
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Frame.Demo.Stack.Server/Frame.Demo.Stack.Server.csproj", "Frame.Demo.Stack.Server/"]
-RUN dotnet restore "./Frame.Demo.Stack.Server/Frame.Demo.Stack.Server.csproj"
+COPY ["src/Frame.Demo.Stack.Server/Frame.Demo.Stack.Server.csproj", "src/Frame.Demo.Stack.Server/"]
+COPY ["src/Frame.Demo.Stack.DBContext/Frame.Demo.Stack.DBContext.csproj", "src/Frame.Demo.Stack.DBContext/"]
+COPY ["src/Frame.Demo.Stack.Logging/Frame.Demo.Stack.Logging.csproj", "src/Frame.Demo.Stack.Logging/"]
+RUN dotnet restore "./src/Frame.Demo.Stack.Server/Frame.Demo.Stack.Server.csproj"
 COPY . .
-WORKDIR "/src/Frame.Demo.Stack.Server"
+WORKDIR "/src/src/Frame.Demo.Stack.Server"
 RUN dotnet build "./Frame.Demo.Stack.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
