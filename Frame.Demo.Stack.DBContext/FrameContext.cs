@@ -1,6 +1,5 @@
 ﻿using Frame.Demo.Stack.DBContext.Classes;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Frame.Demo.Stack.DBContext
 {

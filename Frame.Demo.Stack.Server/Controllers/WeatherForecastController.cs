@@ -1,33 +1,28 @@
+using AutoMapper;
+using Frame.Demo.Stack.DBContext;
+using Frame.Demo.Stack.Server.ViewModels;
+using MassTransit.Initializers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Frame.Demo.Stack.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController(FrameContext dbContext, IMapper mapper) : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [ProducesResponseType<TemperatureSampleDTOv1>(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok(
+                (await dbContext
+                .TemperatureSamples.OrderByDescending(x => x.Time)
+                .Take(100)
+                .AsNoTracking()
+                .ToListAsync())
+                .Select(x => mapper.Map<TemperatureSampleDTOv1>(x)
+                ));
         }
     }
 }

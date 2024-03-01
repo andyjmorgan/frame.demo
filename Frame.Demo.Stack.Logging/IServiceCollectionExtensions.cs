@@ -6,9 +6,9 @@ using Serilog.Exceptions;
 
 namespace Frame.Demo.Stack.Logging
 {
-    public static class Logging
+    public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection AddContainerLogging(this HostApplicationBuilder hostApplicationBuilder)
+        public static IServiceCollection AddContainerLogging(this IHostApplicationBuilder hostApplicationBuilder)
         {
             return hostApplicationBuilder.Services.AddSerilog((context, loggerConfig) =>
             {

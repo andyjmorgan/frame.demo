@@ -1,0 +1,15 @@
+<p-card [header]="toolName" [subheader]="toolSubHeader" class="component-card">
+  <ng-template pTemplate="header">
+    <div
+      class="tool-icon-holder"
+      [ngStyle]="{'background-image': 'url(' + toolIcon + ')'}">
+
+    </div>
+  </ng-template>
+  <p class="description-holder">
+    {{ toolDescription }}
+  </p>
+  <ng-template pTemplate="footer">
+    <a [href]="toolUrl" target="_blank" rel="noopener noreferrer" class="p-button font-bold">Open</a>
+  </ng-template>
+</p-card>

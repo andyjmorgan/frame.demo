@@ -1,24 +1,102 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{ 'border-radius': '3rem' }">
+  <ng-template pTemplate="start">
+    <img src="../../assets/frame.png" style="height:50px;" />
+  </ng-template>
+  <ng-template pTemplate="center">
+    <div class="flex flex-wrap align-items-center gap-3">
+      <img src="../../assets/built-with/docker.png" style="height:50px;">
+      <img src="../../assets/built-with/angular.png" style="height:50px;">
+      <img src="../../assets/built-with/dotnet.png" style="height:50px;">
+      <img src="../../assets/built-with/nginx.png" style="height:50px;">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <div class="flex align-items-center gap-2">
+      <span class="font-bold text-bluegray-50">Built, <i>quite easily</i>, on Frame!</span>
+    </div>
+  </ng-template>
+</p-toolbar>
+<div class="grid">
+  <div class="col-12" style="margin-top: 20px;">
+    <p-card header="About:">
+      <p>This project, which started as a bet between Andrew Morgan and Ruben Spruijt was to demonstrate how easy (or not) it was to leverage frame as a virtual desktop for developer use cases.
+        This demo project consists of a number of typical developer components, all wired together while using a Frame Virtual desktop.</p>
+      <p>Despite not wanting to lose, here we are and it was quite a pleasurable experience!</p>
+    </p-card>
+  </div>
+<div class="col">
+      <app-tool-card
+        toolName="PostgreSQL"
+        toolSubHeader="Probe storage"
+        toolDescription="The Database UI provided by PG4Admin."
+        toolIcon="../../assets/admin-tools/Postgresql.png"
+        toolUrl="http://localhost:8888">
 
-<p>This component demonstrates fetching data from the server.</p>
+      </app-tool-card>
+    </div>
+    <div class="col">
+      <app-tool-card
+        toolName="Swagger"
+        toolSubHeader="API Documentation"
+        toolDescription="The Swagger UI"
+        toolIcon="../../assets/admin-tools/swagger.png"
+        toolUrl="http://localhost/swagger">
+      </app-tool-card>
+    </div>
 
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+    <div class="col">
+      <app-tool-card
+        toolName="RabbitMQ"
+        toolSubHeader="Message Bus"
+        toolDescription="Messages / Events via MassTransit. (u: guest, p: guest)"
+        toolIcon="../../assets/admin-tools/rabbitmq.png"
+        toolUrl="http://localhost:15672">
+      </app-tool-card>
+    </div>
+    <div class="col">
+      <app-tool-card
+        toolName="Seq"
+        toolSubHeader="Logging"
+        toolDescription="Realtime logging UI"
+        toolIcon="../../assets/admin-tools/seq.png"
+        toolUrl="http://localhost:5341">
 
-<table *ngIf="forecasts">
-  <thead>
-  <tr>
-    <th>Date</th>
-    <th>Temp. (C)</th>
-    <th>Temp. (F)</th>
-    <th>Summary</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let forecast of forecasts">
-    <td>{{ forecast.date }}</td>
-    <td>{{ forecast.temperatureC }}</td>
-    <td>{{ forecast.temperatureF }}</td>
-    <td>{{ forecast.summary }}</td>
-  </tr>
-  </tbody>
-</table>
+      </app-tool-card>
+    </div>
+    <div class="col">
+      <app-tool-card
+        toolName="traefik"
+        toolSubHeader="Reverse Proxy"
+        toolDescription="Proxy configuration"
+        toolIcon="../../assets/admin-tools/traefik.png"
+        toolUrl="http://localhost:8080"
+      ></app-tool-card>
+    </div>
+  <div class="col-12">
+    <p-table
+      [value]="forecasts"
+             [tableStyle]="{ 'min-width': '50rem' }"
+      [paginator]="true"
+      [rows]="5"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 20]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>Temp. (C)</th>
+          <th>Temp. (F)</th>
+          <th>Location</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-forecast *ngIf="forecasts">
+        <tr>
+          <td>{{ forecast.time | date: 'short' }}</td>
+          <td>{{ forecast.temperatureC }}</td>
+          <td>{{ forecast.temperatureF }}</td>
+          <td>{{ forecast.location }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  </div>

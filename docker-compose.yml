@@ -4,9 +4,9 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      test: rabbitmq-diagnostics check_port_connectivity
       interval: 30s
-      timeout: 10s
+      timeout: 20s
       retries: 5
     ports:
      - 4369:4369
@@ -27,7 +27,6 @@ services:
       - "80:80"
       - "8080:8080"
     volumes:
-      # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
 
   spa:
@@ -39,14 +38,14 @@ services:
       - "8081:8081"
     labels:
       traefik.http.routers.spa.entrypoints: web
-      traefik.http.routers.spa.rule: Host(`frame.demo`)
+      traefik.http.routers.spa.rule: Host(`localhost`)
       traefik.enable: 'true'
       traefik.http.services.spa.loadbalancer.server.port: '8081'
 
   api:
     build:
       context: .
-      dockerfile: Frame.Demo.Stack.Server/Dockerfile
+      dockerfile: frame.demo.Stack.Server/Dockerfile
     container_name: api
     ports:
       - "8082:8082"
@@ -55,7 +54,7 @@ services:
     labels:
       traefik.enable: 'true'
       traefik.http.routers.api.entrypoints: web
-      traefik.http.routers.api.rule: Host(`frame.demo`) && PathPrefix(`/api`)
+      traefik.http.routers.api.rule: Host(`localhost`) && (PathPrefix(`/api`) || PathPrefix(`/swagger`))
       traefik.http.services.api.loadbalancer.server.port: '8082'
     depends_on:
       - rabbitmq
@@ -89,7 +88,7 @@ services:
   consumer:
     build:
       context: .
-      dockerfile: Frame.Demo.Stack.Consumer/Dockerfile
+      dockerfile: frame.demo.Stack.Consumer/Dockerfile
     depends_on:
       - rabbitmq
     links: 
@@ -98,12 +97,15 @@ services:
   probe:
     build:
       context: .
-      dockerfile: Frame.Demo.Stack.TemperatureProbe/Dockerfile
+      dockerfile: frame.demo.Stack.TemperatureProbe/Dockerfile
     container_name: probe
     depends_on:
       - rabbitmq
     links: 
       - rabbitmq
+    deploy:
+      restart_policy:
+        condition: on-failure
     
   seq:
     image: datalust/seq:latest
@@ -114,14 +116,6 @@ services:
      - 5341:80
     volumes:
     - seq-data:/data
-
-  seq-input-gelf:
-    container_name: "seq-gelf"
-    image: datalust/seq-input-gelf:latest
-    environment:
-      SEQ_ADDRESS: http://seq:5341
-    ports:
-     - 12201:12201/udp
 
 volumes:
   local_pgdata:

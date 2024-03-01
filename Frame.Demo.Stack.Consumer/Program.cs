@@ -2,7 +2,6 @@ using Frame.Demo.Stack.Consumer.Consumers;
 using Frame.Demo.Stack.DBContext;
 using Frame.Demo.Stack.DBContext.Extensions;
 using Frame.Demo.Stack.Logging;
-using Frame.Demo.Stack.Messaging;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 

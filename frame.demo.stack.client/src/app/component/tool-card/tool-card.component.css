@@ -1,0 +1,12 @@
+.tool-icon-holder{
+  width:200px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.description-holder{
+  min-height: 100px;
+}
